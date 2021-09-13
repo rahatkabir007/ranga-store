@@ -30,7 +30,7 @@ const showProducts = (products) => {
                             <i class="far fa-star"></i>
                             <i class="far fa-star"></i>
                             <i class="far fa-star"></i>`;
-    
+
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
