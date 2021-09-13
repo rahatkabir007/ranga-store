@@ -3,12 +3,37 @@ const loadProducts = () => {
   showProducts(data);
 };
 
+// const img = book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWHezdCTO7BL64GpTK7rycWcrUxrqJHiNtBA&usqp=CAU`
+// let publishYear = book.first_publish_year ? book.first_publish_year : "Unknown"
 
 // show all product in UI 
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
     const image = product.image;
+    const rating = product.rating.rate >= 4 ? `<i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="far fa-star"></i>`:
+      product.rating.rate >= 3 ?
+        `<i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>`:
+        product.rating.rate >= 2 ?
+          `<i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>`:
+          `<i class="fas fa-star filled"></i>
+                           <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>
+                            <i class="far fa-star"></i>`;
+    
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -17,9 +42,11 @@ const showProducts = (products) => {
       </div>
       <h3>${product.title}</h3>
       <p>Category: ${product.category}</p>
+      <p>Rating: ${rating} (${product.rating.rate})</p>
+      <p>${product.rating.count} Ratings</p>
       <h2>Price: $ ${product.price}</h2>
-      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn">Add to Cart</button>
+      <button id="details-btn" class="details btn">Details</button></div>
       `;
     document.getElementById("all-products").appendChild(div);
   }
@@ -48,13 +75,13 @@ const updatePrice = (id, value) => {
   const convertPrice = parseFloat(value);
   const total = convertedOldPrice + convertPrice;
   document.getElementById(id).innerText = total.toFixed(2);
- 
+
 };
 
 // set innerText function
 const setInnerText = (id, value) => {
   document.getElementById(id).innerText = value.toFixed(2);
-  
+
 };
 
 // update delivery charge and total Tax
@@ -81,4 +108,5 @@ const updateTotal = () => {
     getInputValue("total-tax");
   document.getElementById("total").innerText = grandTotal.toFixed(2);
 };
+
 loadProducts();
