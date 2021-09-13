@@ -3,9 +3,6 @@ const loadProducts = () => {
   showProducts(data);
 };
 
-// const img = book.cover_i ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` : `https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWHezdCTO7BL64GpTK7rycWcrUxrqJHiNtBA&usqp=CAU`
-// let publishYear = book.first_publish_year ? book.first_publish_year : "Unknown"
-
 // show all product in UI 
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
