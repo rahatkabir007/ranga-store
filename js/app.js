@@ -25,7 +25,7 @@ const showProducts = (products) => {
   }
 };
 
-//add to cart button er kaaj
+//add to cart button's work
 let count = 0;
 const addToCart = (id, price) => {
   count = count + 1;
@@ -38,7 +38,7 @@ const addToCart = (id, price) => {
 
 const getInputValue = (id) => {
   const element = document.getElementById(id).innerText;
-  const converted = parseInt(element);
+  const converted = parseFloat(element);
   return converted;
 };
 
